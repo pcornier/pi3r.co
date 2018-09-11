@@ -9,6 +9,9 @@ tags:
 
 A vector field path finding for LUA. This demonstrates the importance of relocation of intensive calculations: entity based pathfinding vs global grid pathfinding.
 
+![zombies!](/images/zombies.gif)
+<center>*Hungry zombies will try to avoid bushes*</center>
+
 <!-- more -->
 
 ```lua
