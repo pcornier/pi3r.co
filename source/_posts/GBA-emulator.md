@@ -9,7 +9,10 @@ tags:
 
 This is a basic GBA emulator in coffeescript: https://github.com/pcornier/gbcoffee
 
+![Tetris](https://github.com/pcornier/gbcoffee/raw/master/assets/tetris.png)
+
 This is my second emulator and most of the steps were identical to what I did when I created an NES emulator. Therefore, I decided to write some lines about the chronological process. Maybe no one will find it interesting, but I will certainly reuse this for my next one.
+
 
 <!-- more -->
 
@@ -244,7 +247,6 @@ The two upper bits 6-7 are not used and are set to 1 (0xc0).
 
 You should be able to run the game but without sprites it will not be very fun. I recommend to go back to your LCD class and to make the sprite implementation now.
 
-![Tetris](https://github.com/pcornier/gbcoffee/raw/master/assets/tetris.png)
 
 ### Timer
 

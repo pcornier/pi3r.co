@@ -7,6 +7,8 @@ tags:
 This is a basic genetic algorithm that converges into a simple grid.
 Please note that p5.js is required to run this example.
 
+![GA grid!](/images/grid.gif)
+
 <!-- more -->
 
 ```javascript

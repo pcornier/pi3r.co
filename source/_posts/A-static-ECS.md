@@ -1,12 +1,12 @@
 ---
 title: A static ECS in Javascript
-date: 2018-04-24 10:16:37
+date: 2018-01-15 10:16:37
 tags:
 - ECS
 - Javascript
 ---
 
-This is a very minimal ECS (Entity Componenent System) implementation. This one is static so it misses one of the big functionality of ECS systems. If you want a more complete implementation, you can look at my TIC-80 boilerplate there: https://github.com/pcornier/TIC80-boilerplate/blob/master/src/libs/ecs.lua
+This is a very minimal ECS (Entity Componenent System) implementation. This one is static so it misses one of the big functionality of ECS systems.
 
 <!-- more -->
 
