@@ -9,9 +9,12 @@ tags:
 
 A GOAP (Goal Oriented Action Planning) implementation in LUA.
 
+<video autoplay loop muted markdown="1">
+  <source src="/images/goap.webm" type="video/webm" markdown="1">
+</video>
+
 <!-- more -->
 
-## LUA
 ```lua
 local function all(callback, gen)
   for k,v in pairs(gen) do
@@ -44,7 +47,7 @@ local Planner = function(...)
         action.cost = action.weight + weight
         action.parents = action.parents or {}
         table.insert(action.parents, parent)
-        
+
         if all(function(k, v) return v == action.effects[k] end, goal) then
           goal.parents = goal.parents or {}
           table.insert(goal.parents, action)
@@ -54,7 +57,7 @@ local Planner = function(...)
           for k,v in pairs(state) do if not action.effects[k] then action.effects[k] = v end end
           planner:buildGraph(action, goal, subset, action.cost)
         end
-        
+
       end
     end
   end
@@ -63,7 +66,7 @@ local Planner = function(...)
 
     local state = {}
     for k,v in pairs(start) do state[k] = v end
-    
+
     planner:buildGraph(state, goal, actions)
     local plan = {}
     local node = goal
@@ -72,7 +75,7 @@ local Planner = function(...)
       if node.name then table.insert(plan, node.name) end
       node = node.parents[1]
     end
-    
+
     local reverse = {}
     for i = #plan, 1, -1 do
       table.insert(reverse, plan[i])
@@ -85,4 +88,20 @@ local Planner = function(...)
 end
 
 return Planner
+```
+
+## Usage
+Pass a list of actions to the planner then call the `findPlan()` method.
+
+```lua
+local state = { playerInSight = false, withinRange = false, playerIsDead = false }
+local goal = { playerIsDead = true }
+local actions = {
+  { name = 'patrolling', conditions = { playerInSight = false }, effects = { playerInSight = true }, weight = 2 },
+  { name = 'reachPlayer', conditions = { playerInSight = true }, effects = { withinRange = true }, weight = 1 },
+  { name = 'attack', conditions = { withinRange = true }, effects = { playerIsDead = true }, weight = 1 },
+  ...
+}
+local planner = Planner(unpack(actions))
+local plan = planner:findPlan(state, goal)
 ```
