@@ -45,7 +45,8 @@ for a in [0..0x10000]
   etc...
 ```
 
-You can use these two arrays in your public read/write functions. This will avoid conditional code during execution.
+~~You can use these two arrays in your public read/write functions. This will avoid conditional code during execution.~~
+**Actually, I did some tests in Lua and Javascript very recently and it seems that calling pointers is slower than simple conditions. Please see the [EDIT] part at the end.**
 
 ```coffee
 # main read memory function
@@ -258,3 +259,7 @@ Possible frequencies (CPU cycles before next increment) are 1024, 16, 64, 256. T
 
 ![Super Mario Land](https://github.com/pcornier/gbcoffee/raw/master/assets/sml.png)
 
+
+[EDIT]
+
+![slow pointers](/images/pointers.png)
