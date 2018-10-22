@@ -10,7 +10,7 @@ Here is a short introduction to emulation. I will try to explain how to emulate 
 
 ### Memory Emulation
 
-Firstly, we need to emulate a 8bit memory. I decided to create a 64k, little endian memory.
+Firstly, we need to emulate the memory. I decided to create a 64k, little endian memory.
 
 Create a `memory.lua` module:
 ```lua
@@ -39,7 +39,7 @@ function memory:write(address, value)
 end
 ```
 
-The function receives two parameters: a location and a byte value. We need to perform a bitwise "and" operation with a 16bit mask to have a safe memory address: 0x10000 = 0x0000, 0x10001 = 0x0001 etc. Same thing with the byte value, we "and" the value with a 8bit mask.
+The function receives two parameters: a location and a byte value. We need to perform a bitwise "and" operation with a 16bit mask to get a safe memory address: if the address exceeds 0xffff, it will wrap to zero e.g. 0x10000 = 0x0000, 0x10001 = 0x0001 etc. Same thing with the byte value, we "and" the value with a 8bit mask.
 
 The read function is really basic:
 ```lua
@@ -97,7 +97,7 @@ describe('read/write to memory', function()
     assert.equal(0xff01, memory:read16(0x100))
   end)
 
-  it('can cross memory', function()
+  it('can memory wrap', function()
     memory:write(0xffff, 0x01)
     memory:write(0x0000, 0xff)
     assert.equal(0xff01, memory:read16(0xffff))
@@ -650,7 +650,7 @@ describe('read/write to memory', function()
     assert.equal(0xff01, memory:read16(0x100))
   end)
 
-  it('can cross memory', function()
+  it('can memory wrap', function()
     memory:write(0xffff, 0x01)
     memory:write(0x0000, 0xff)
     assert.equal(0xff01, memory:read16(0xffff))
