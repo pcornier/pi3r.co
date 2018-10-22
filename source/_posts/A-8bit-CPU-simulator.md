@@ -60,7 +60,7 @@ end
 Nothing really complex here, if memory contains $aa $bb at locations 00 and 01 respectively, then $bb is shifted so it becomes $bb00 and $aa is added (OR) to that value. The final 16bit value is $bbaa.
 
 
-The final function that we could add is a small utility that can load a program into memory.
+The final function that we can add is a small utility which loads a program into memory.
 ```lua
 function memory:loadPRG(prg, address)
   address = address & 0Xffff
@@ -256,7 +256,7 @@ We will implement only 5 addressing modes:
 
 *The original 6502 has **12** addressing modes.*
 
-We can easily emulate the LDX IMM instruction. It's really similar to the LDA instruction:
+We can easily emulate the LDX IMM instruction. It's quite similar to the LDA instruction:
 ```lua
   -- emulate instruction
 
@@ -343,7 +343,7 @@ The STA ABX test:
   end)
 ```
 
-Now, the CPX IMM instruction which compare X with an immediate value:
+Now, the CPX IMM instruction which compares X with an immediate value:
 ```lua
   -- 0xe0 = CPX IMM : compare with immediate
   elseif opcode == 0xe0 then
